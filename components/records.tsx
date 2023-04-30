@@ -54,16 +54,18 @@ export const Records = () => {
         recordsPerPage: 3
     });
 
+    const getRecordsNumber = async (params) => {
+        return axios.get<{ records: Record[], pages: number }>(`${API_URL}/v1/records-number`, {
+            headers: {
+                Authorization: user?.token,
+            },
+            params
+        });
+    }
+
     useEffect(() => {
         if (user?.token) {
-            axios.get<{ records: Record[], pages: number }>(`${API_URL}/v1/records-number`, {
-                headers: {
-                    Authorization: user?.token,
-                },
-                params: {
-                    recordsPerPage
-                }
-            }).then((res) => {
+            getRecordsNumber({ recordsPerPage }).then((res) => {
                 setRecords(res.data.records);
                 setPagesNumber(res.data.pages);
             })
@@ -102,14 +104,7 @@ export const Records = () => {
     }
 
     const query = async () => {
-        const response = await axios.get<{ records: Record[], pages: number }>(`${API_URL}/v1/records-number`, {
-            headers: {
-                Authorization: user?.token,
-            },
-            params: {
-                ...filters
-            }
-        });
+        const response = await getRecordsNumber({ ...filters });
         if (filters.recordsPerPage) {
             setRecordsPerPage(filters.recordsPerPage);
         }
@@ -139,7 +134,17 @@ export const Records = () => {
                 Authorization: user?.token,
             },
         });
-        query();
+        const response = await getRecordsNumber({
+            recordsPerPage,
+            operationResponse,
+            type,
+            date,
+            orderByCol,
+            orderByType
+        });
+        setRecords(response.data.records);
+        setPage(1);
+        setPagesNumber(response.data.pages);
     }
 
     return (
