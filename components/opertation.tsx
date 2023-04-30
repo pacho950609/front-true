@@ -80,9 +80,6 @@ export const Operation = () => {
         if (operationNumber2 === 0 && operationType === OperationType.DIVISION) {
             return false
         }
-        if (operations.find(o => o.type === operationType)?.cost > userBalance) {
-            return false
-        }
         return true
     }
 
