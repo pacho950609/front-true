@@ -258,7 +258,7 @@ export const Records = () => {
                     }))}
                 </tbody>
             </Table>
-            <Pagination>
+            <Pagination hidden={!records.length}>
                 {
                     getPaginationItems()
                 }
