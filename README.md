@@ -15,7 +15,7 @@ npm run dev
 
 Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 
-This project is connected to a remote server, if you want to change the server you can change the remote host in the `/apolloClient/apolloClient.ts`
+This project is connected to a remote server, if you want to change the server you can change the remote host in the `/context/userContext.tsx` file
 
 ## Deploy
 
