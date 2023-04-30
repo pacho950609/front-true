@@ -158,9 +158,9 @@ export const Records = () => {
                             <Form.Select
                                 aria-label="Default select example"
                                 value={filters.operationResponse ?? "Select"}
-                                onChange={(or) => setFilters({ ...filters, operationResponse: or.target.value as OperationResponse })}
+                                onChange={(or) => or.target.value === 'Select' ? setFilters({ ...(_.omit(filters, 'operationResponse'))}) : setFilters({ ...filters, operationResponse: or.target.value as OperationResponse })}
                             >
-                                <option disabled> Select </option>
+                                <option> Select </option>
                                 {Object.values(OperationResponse).map(or => <option key={or}> {or} </option>)}
                             </Form.Select>
                         </InputGroup>
@@ -171,9 +171,9 @@ export const Records = () => {
                             <Form.Select
                                 aria-label="Default select example"
                                 value={filters.type ?? "Select"}
-                                onChange={(or) => setFilters({ ...filters, type: or.target.value as OperationType })}
+                                onChange={(or) => or.target.value === 'Select' ? setFilters({ ...(_.omit(filters, 'type'))}) : setFilters({ ...filters, type: or.target.value as OperationType })}
                             >
-                                <option disabled > Select </option>
+                                <option> Select </option>
                                 {Object.values(OperationType).map(ot => <option key={ot}> {ot} </option>)}
                             </Form.Select>
                         </InputGroup>
@@ -184,7 +184,7 @@ export const Records = () => {
                             <Form.Control
                                 type="date"
                                 value={filters.date ?? ''}
-                                onChange={(or) => setFilters({ ...filters, date: or.target.value })}
+                                onChange={(or) => or.target.value === '' ? setFilters({ ...(_.omit(filters, 'date'))}) : setFilters({ ...filters, date: or.target.value })}
                             />
                         </InputGroup>
                     </Col>
@@ -200,9 +200,9 @@ export const Records = () => {
                             <Form.Select
                                 aria-label="Default select example"
                                 value={filters.orderByCol ?? "Select"}
-                                onChange={(or) => setFilters({ ...filters, orderByCol: or.target.value as OrderColumn })}
+                                onChange={(or) => or.target.value === 'Select' ? setFilters({ ...(_.omit(filters, 'orderByCol'))}) : setFilters({ ...filters, orderByCol: or.target.value as OrderColumn })}
                             >
-                                <option disabled > Select </option>
+                                <option > Select </option>
                                 {Object.values(OrderColumn).map(oc => <option key={oc}> {oc} </option>)}
                             </Form.Select>
                         </InputGroup>
@@ -213,9 +213,9 @@ export const Records = () => {
                             <Form.Select
                                 aria-label="Default select example"
                                 value={filters.orderByType ?? "Select"}
-                                onChange={(or) => setFilters({ ...filters, orderByType: or.target.value as OrderType })}
+                                onChange={(or) => or.target.value === 'Select' ? setFilters({ ...(_.omit(filters, 'orderByType'))}) : setFilters({ ...filters, orderByType: or.target.value as OrderType })}
                             >
-                                <option disabled > Select </option>
+                                <option > Select </option>
                                 {Object.values(OrderType).map(ot => <option key={ot}> {ot} </option>)}
                             </Form.Select>
                         </InputGroup>
