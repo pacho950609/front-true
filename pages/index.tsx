@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import { useUser } from '../hooks/useUser'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Operation } from '../components/opertation';
-import { Records } from '../components/records';
 
 const Home: NextPage = () => {
   const { user } = useUser();
