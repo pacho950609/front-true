@@ -133,6 +133,15 @@ export const Records = () => {
         setPagesNumber(response.data.pages);
     }
 
+    const deleteRecord = async (id: string) => {
+        await axios.delete(`${API_URL}/v1/record/${id}`, {
+            headers: {
+                Authorization: user?.token,
+            },
+        });
+        query();
+    }
+
     return (
         <>
             <h4> <b> Records </b> </h4>
@@ -241,6 +250,7 @@ export const Records = () => {
                         <th>Response</th>
                         <th>Amount</th>
                         <th>Date</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -253,6 +263,11 @@ export const Records = () => {
                                 <td> {r.operationResponse} </td>
                                 <td> {r.amount} </td>
                                 <td> {moment(r.date).utc().format('YYYY-MM-DD')} </td>
+                                <td>                 
+                                    <Button variant="danger" onClick={() => deleteRecord(r.id)}>
+                                        Delete
+                                    </Button> 
+                                </td>
                             </tr>
                         )
                     }))}
